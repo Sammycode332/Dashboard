@@ -1,9 +1,13 @@
 import UserProfile from './UserProfile'
+import type {ReactNode } from 'react'
 
-const Navbar = () => {
+type NavbarProps = {
+  children: ReactNode
+}
+const Navbar = ({children}: NavbarProps) => {
   return (
     <div>
-        <UserProfile />
+        {children}
     </div>
   )
 }

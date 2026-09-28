@@ -2,12 +2,15 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import UserPage from './components/UserPage'
+import UserProfile from './components/UserProfile'
 
 const App = () => {
   return (
     <div>
-      <Sidebar />
-      <Navbar />
+      <Sidebar title = "My Awesome Dashboard" username = "Samuel"/>
+      <Navbar>
+        <UserProfile />
+      </Navbar>
       <Login />
       <UserPage />
     </div>
