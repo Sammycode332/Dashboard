@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useMemo} from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutUser, setUser } from '../redux/user/userSlice'
 const Login = () => {
@@ -13,6 +13,22 @@ const Login = () => {
     useEffect(()=>{
         console.log("Login component appeared")
     })
+    useEffect(()=>{
+        const timer = setInterval(()=>{
+            console.log("Printing Hello World")
+        },1000)
+
+        return()=>{
+            clearInterval(timer)
+        }
+    },[])
+
+    const something = useMemo(()=>{
+       
+        console.log("Calculating something...")
+        return name.length
+    },[name])
+
     const dispatch = useDispatch()
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault() //telss the browswr not to reload the page by default5
@@ -51,6 +67,7 @@ const Login = () => {
                     required/>
                 </div>
                 {error && <p>{error}</p>}
+                <p>Name length: {something}</p>
                 <div>
                     <label htmlFor='email'>Email</label>
                     <input 
