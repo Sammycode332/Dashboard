@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useMemo} from 'react'
+import React, { useState,useEffect,useMemo,useCallback} from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutUser, setUser } from '../redux/user/userSlice'
 const Login = () => {
@@ -27,7 +27,8 @@ const Login = () => {
        
         console.log("Calculating something...")
         return name.length
-    },[name])
+    },[name]) //usememo will check if a dependency value hasnt been changed if it hasnt it keeps that calue but if ith has changed it goes ahed to peroform a function nut use callbavk o
+    //on th eother hand remebers a function if it sees the dependencthasnt hchanged reuse the fprevious functon but if it has changed 
 
     const dispatch = useDispatch()
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
@@ -43,9 +44,9 @@ const Login = () => {
         }
     }
     
-    const handleLogout = ()=>{
+    const handleLogout = useCallback(()=>{
         dispatch(logoutUser())
-    }
+    }, [dispatch])
 
   return (
     <div>Welcome Back, Please Login to continue
