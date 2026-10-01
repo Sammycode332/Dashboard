@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useMemo,useCallback} from 'react'
+import React, { useState,useEffect,useMemo,useCallback,useReducer} from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutUser, setUser } from '../redux/user/userSlice'
 const Login = () => {
@@ -6,6 +6,36 @@ const Login = () => {
     const [email,setEmail] = useState('')
     const [error,setError]  = useState('')
 
+    type CounterState = {
+        count: number
+    }
+   type CounterAction =
+  | { type: "increment" }
+  | { type: "decrement" }
+  | { type: "add"; payload: number }
+    const initialState = {
+        count:0
+    } //igf you using a reducer then use the inital state object is for all stateyou will hold
+
+    const reducer = (state: CounterState,action:CounterAction)=>{
+        if(action.type === "increment"){
+            return{
+                count: state.count + 1
+            }
+        }
+        if(action.type === "decrement"){
+            return{
+                count: state.count-1
+            }
+        }
+        if(action.type === "add"){
+            return{
+                count: state.count + action.payload
+            }
+        }
+        return state
+    }
+    const [state,reducerDispatch] = useReducer(reducer,initialState)
     useEffect(()=>{
         document.title = `Welcome ${name}`
         console.log(`name is ${name}`)
@@ -84,6 +114,20 @@ const Login = () => {
                 </div>
                 <button type = "submit">Login</button>
                 <button type = "button" onClick={handleLogout}>Logout</button> 
+                <p>Increment: {state.count}</p>
+                <button type = "button" onClick = {()=>reducerDispatch({
+                    type: 'increment',
+                   
+                    })}>increment</button>
+                <button type = "button" onClick = {()=>reducerDispatch({
+                    type: 'decrement',
+                   
+                    })}>decrement</button>
+                <button type = "button" onClick = {()=>reducerDispatch({
+                    type: 'add', 
+                    payload:5
+
+                })}>Add 5</button>
             </form>
         </div>
     </div>
