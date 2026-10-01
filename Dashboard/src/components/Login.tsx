@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutUser, setUser } from '../redux/user/userSlice'
 const Login = () => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [error,setError]  = useState('')
+
+    useEffect(()=>{
+        document.title = `Welcome ${name}`
+        console.log(`name is ${name}`)
+    },[name])
+    useEffect(()=>{
+        console.log("Login component appeared")
+    })
     const dispatch = useDispatch()
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault() //telss the browswr not to reload the page by default5
