@@ -3,7 +3,8 @@ import Navbar from './components/Navbar'
 import Login from './components/Login'
 import UserPage from './components/UserPage'
 import UserProfile from './components/UserProfile'
-
+import JotaiNameDisplay from './components/JotaiNameDisplay'
+import JotaiNameChanger from './components/JotaiNameChanger'
 const App = () => {
   return (
     <div>
@@ -11,6 +12,8 @@ const App = () => {
       <Navbar>
         <UserProfile />
       </Navbar>
+      <JotaiNameDisplay />
+      <JotaiNameDisplay/>
       <Login />
       <UserPage />
     </div>
