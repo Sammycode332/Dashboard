@@ -9,6 +9,7 @@ const Login = () => {
 
     const login = useUserStore((state) => state.login)
     const logout = useUserStore((state)=>state.logout)
+    const isLoggedIn = useUserStore((state)=> state.isLoggedIn)
     type CounterState = {
         count: number
     }
@@ -118,6 +119,7 @@ const Login = () => {
                     placeholder='Enter your Email' 
                     required/>
                 </div>
+                {isLoggedIn? <p>You are logged in </p>: <p>You are not logged in</p>}
                 <button type = "submit">Login</button>
                 <button type = "button" onClick={handleLogout}>Logout</button> 
                 <p>Increment: {state.count}</p>
