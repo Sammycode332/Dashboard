@@ -25,7 +25,7 @@ const [notifications, setNotifications] = useState(0)
       <p>Home</p>
       <p>Users</p>
       <p>Analytics</p>
-      <p>Settings</p>
+      <p>Settings</p>.
         </div>
       )}
       <p>Notification: {notifications}</p>
