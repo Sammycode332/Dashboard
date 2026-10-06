@@ -1,11 +1,14 @@
 import React, { useState,useEffect,useMemo,useCallback,useReducer} from 'react'
 import { useDispatch } from 'react-redux'
 import { logoutUser, setUser } from '../redux/user/userSlice'
+import { useUserStore } from '../store/useUserStore'
 const Login = () => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [error,setError]  = useState('')
 
+    const login = useUserStore((state) => state.login)
+    const logout = useUserStore((state)=>state.logout)
     type CounterState = {
         count: number
     }
@@ -67,7 +70,8 @@ const Login = () => {
             console.log("Logging in with",{name,email})
             console.log(`Name: ${name}`)
             console.log(`Email: ${email}`)
-            dispatch(setUser({name,email}))
+            // dispatch(setUser({name,email}))
+            login(name, email)
             setError("")
         }else {
             setError("Please fill in all the fields")
@@ -75,8 +79,10 @@ const Login = () => {
     }
     
     const handleLogout = useCallback(()=>{
-        dispatch(logoutUser())
-    }, [dispatch])
+        // dispatch(logoutUser())
+        //put dispatch in that box if thats ehsy you used
+        logout()
+    }, [logout])
 
   return (
     <div>Welcome Back, Please Login to continue
