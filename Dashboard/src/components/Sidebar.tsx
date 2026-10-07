@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import { Link } from "react-router-dom";
 type sidebarProps =  {
   title: string
   username: string
@@ -9,10 +10,10 @@ const Sidebar = ({ title,username }:sidebarProps) => {
 const [sidebarOpen, setSidebarOpen] = useState(true)
 const [notifications, setNotifications] = useState(0)
 const menuItems = [
-  { id: 1, name: "Home" },
-  { id: 2, name: "Users" },
-  { id: 3, name: "Analytics" },
-  { id: 4, name: "Settings" },
+  { id: 1, name: "Home", path: "/dashboard" },
+  { id: 2, name: "Users", path: "/users" },
+  { id: 3, name: "Analytics", path: "/analytics" },
+  { id: 4, name: "Settings", path: "/settings" },
 ]
   
 ///* instead of doing props .title i destructured to only get the title from sidebar probs instead of letting sidebar collect the whole function of props */
@@ -28,7 +29,7 @@ const menuItems = [
         <div>
       <p>Welcome, {username}</p>
       {menuItems.map((item) =>(
-        <p key = {item.id}>{item.name}</p>
+        <Link to = {item.path} key = {item.id}>{item.name}</Link>
       ))}
         </div>
       )}
